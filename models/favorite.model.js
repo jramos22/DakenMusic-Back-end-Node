@@ -1,15 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const favoriteSchema = new Schema({
+const favoriteSchema = mongoose.Schema({
     idUser:{
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true
     },
-    idFavoriteSongs:{
-        type: [String],
-        required: true
-    }, 
+    songs: [String] 
 }, {versionKey: false});
 const favorite = mongoose.model('favorite', favoriteSchema)
-module.exports = favorite;
+module.exports = favorite;  

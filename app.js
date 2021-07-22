@@ -22,7 +22,10 @@ app.use(express.urlencoded({
     extended: true,
 }));
 
-app.use('/', userRoute, playlistRoute, favoriteRoute, recentRoute);
+app.use('/', userRoute);
+app.use('/', playlistRoute);
+app.use('/', favoriteRoute);
+app.use('/', recentRoute);
 
 app.use('*', (req, res) =>{
     res.status(404)

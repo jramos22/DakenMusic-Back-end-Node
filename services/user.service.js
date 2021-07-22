@@ -2,9 +2,9 @@ const User = require('../models/user.model');
 
 const userService = {}
 
-userService.createUser = async function({name, email}){
+userService.createUser = async function({name, email, password}){
     try{
-        const user = new User({name, email});
+        const user = new User({name, email, password});
         const newUser = await user.save();
         return newUser;
     }catch(e){
@@ -18,6 +18,26 @@ userService.getUsers = async function(){
         return users;
     }catch(e){
         throw new Error ('Error while paginating Users');
+    }
+}
+
+userService.getUser = async function({ id }){
+    try{
+        const user = await User.findById(id)
+        return user;
+    }catch (e){
+        throw new Error('Error while returning user');
+    }
+}
+
+userService.updateUser = async function({id},{name, email, password}){
+    try{
+        const user = await User.findById(id);
+        const updateUser = await user.set({name, email, password});
+        await updateUser.save();
+        return updateUser;
+    }catch(e){
+        throw new Error ('Error while update user')
     }
 }
 

@@ -19,4 +19,25 @@ userController.getUsers = async function (req, res, next){
     }
 }
 
+userController.getUser = async function(req, res, next){
+    try{
+        const user = await userService.getUser(req.params)
+        if(user == null){
+            return res.status(400).json({status:400, message:"cannot find User"})
+        }
+        return res.status(200).json({status:200, data: user, message: "Succesfully user retrieved"})
+    }catch(error){
+        return res.status(400).json({status:400, message: error.message});
+    }
+}
+
+userController.updateUser = async function (req, res, next){
+    try{
+        const updateUser = await userService.updateUser(req.params, req.body);
+        return res.status(200).json({status:200, data: updateUser, message: "Succesfully update user"})
+    }catch(error){
+        return res.status(400).json({status:400, message: error.message});
+    }
+}
+
 module.exports = userController;
