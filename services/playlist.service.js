@@ -1,28 +1,27 @@
 const playlist = require('../models/playlist.model');
-//const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const playlistService = {}
 
-/*async function findUser(idUser){
+async function findUser(idUser){
     try{
         const user = playlist.findOne({idUser: mongoose.Types.ObjectId(idUser)});
         return user ? user : null;
     }catch (e){
         throw new Error('Error while find favorite')
     }
-}*/
-/*async function findName(playlistName){
+}
+async function findid(id){
     try{
-        const user = playlist.findOne({playlistName:playlistName});
+        const user = playlist.findOne({_id:id});
         return user ? user : null;
     }catch (e){
         throw new Error('Error while find favorite')
     }
-}*/
+}
 
-playlistService.createPlaylist =  async function({idUser, playlistName ,idSongsAdded}){
+playlistService.createPlaylist = async function (idUser, playlistName ,idSongsAdded){
     try{
-        console.log(idUser, playlistName, idSongsAdded)
-        const Playlist = new playlist({idUser, playlistName, idSongsAdded});
+        const Playlist = new playlist({idUser, idSongsAdded, playlistName})
         const newPlaylist = await Playlist.save();
         return newPlaylist;
     }catch(e){
@@ -30,15 +29,18 @@ playlistService.createPlaylist =  async function({idUser, playlistName ,idSongsA
     }
 }
 
-/*async function updateplaylist(user, songs){
+playlistService.updateplaylist = async function({id},{idUser, playlistName, idSongsAdded}){
     try{
-        user.idSongsAdded.push(songs.toString());
-        user.save();
-        return user;
+        const Playlist = await playlist.findById(id);
+        console.log(Playlist);
+        const updatePlay = await Playlist.set({idUser, playlistName});
+        Playlist.idSongsAdded.push(idSongsAdded.toString());
+        await updatePlay.save();
+        return updatePlay;
     }catch (e){
-        throw new Error('Error while update favorite');
+        throw new Error('Error while update playlist');
     }
-}*/
+}
 
 async function deletesSongs(user, song){
     try{
@@ -58,6 +60,7 @@ async function deletesPlaylist(user, name){
         throw new Error('Error while deletes favorite');    
     }
 }
+
 
 playlistService.deleteSongs = async function({songs},{idUser}){
     try{
