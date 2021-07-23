@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const recentSchema = new Schema({
+const recentSchema = mongoose.Schema({
     idUser:{
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true
     },
     idSong:{

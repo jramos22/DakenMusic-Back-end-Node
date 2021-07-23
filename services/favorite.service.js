@@ -32,6 +32,16 @@ async function updateFavorite(user, songs){
     }
 }
 
+async function deletesFavorite(user, song){
+    try{
+        user.songs.pull(song);
+        user.save();
+        return user;
+    }catch (e){
+        throw new Error('Error while deletes favorite');    
+    }
+}
+
 favoriteService.upsertFavorite = async function({idUser, songs}){
     try{
         const user = await findUser(idUser);
@@ -51,6 +61,17 @@ favoriteService.getFavorite = async function(){
         return favorites;
     }catch(e){
         throw new Error ('Error while paginating Favorite');
+    }
+}
+
+favoriteService.deleteFavorite = async function({idUser, songs}){
+    try{
+        const user = await findUser(idUser);
+        if(user){
+            return await deletesFavorite(user, songs);
+        }
+    }catch(e){
+        throw new Error('Error while delete favorite');
     }
 }
 
