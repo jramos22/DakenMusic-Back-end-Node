@@ -19,15 +19,15 @@ playlistController.updateplaylist = async function (req, res, next){
 }
 playlistController.deletePlaylist = async function (req, res, next){
     try{
-        const deletePlaylist = await playlistService.deletePlaylist(req.body);
-        return res.status(201).json({deletePlaylist});
+        const deletePlaylist = await playlistService.deletePlaylist(req.params);
+        return res.status(200).json({deletePlaylist});
     }catch(error){
         return res.status(400).json({status: 400, message: error.message})
     }
 }
 playlistController.deletePlaylistSong = async function (req, res, next){
     try{
-        const deleteSongs = await playlistService.deleteSongs(req.params);
+        const deleteSongs = await playlistService.deleteSongs(req.params, req.body);
         return res.status(201).json({deleteSongs});
     }catch(error){
         return res.status(400).json({status: 400, message: error.message})
@@ -37,6 +37,14 @@ playlistController.getPlaylist = async function (req, res, next){
     try{
         const playlists = await playlistService.getPlaylist();
         return res.status(200).json({status: 200, data:playlists, message:"Succesfully playlist retrived"});
+    }catch(error){
+        return res.status(400).json({status: 400, message: error.message});
+    }
+}
+playlistController.getOne = async function (req, res, next){
+    try{
+        const playlist = await playlistService.getPlaylistOne(req.params);
+        return res.status(200).json({status: 200, data:playlist, message:"Succesfully playlist retrived"});
     }catch(error){
         return res.status(400).json({status: 400, message: error.message});
     }

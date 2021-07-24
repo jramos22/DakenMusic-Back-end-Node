@@ -32,9 +32,9 @@ async function updateFavorite(user, songs){
     }
 }
 
-async function deletesFavorite(user, song){
+async function deletesFavorite(user, songs){
     try{
-        user.songs.pull(song);
+        user.songs.pull(songs.toString());
         user.save();
         return user;
     }catch (e){
@@ -64,7 +64,7 @@ favoriteService.getFavorite = async function(){
     }
 }
 
-favoriteService.deleteFavorite = async function({idUser, songs}){
+favoriteService.deleteFavorite = async function({songs, idUser}){
     try{
         const user = await findUser(idUser);
         if(user){
