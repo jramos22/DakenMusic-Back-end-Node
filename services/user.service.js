@@ -1,10 +1,11 @@
+const md5 = require('md5');
 const User = require('../models/user.model');
 
 const userService = {}
 
 userService.createUser = async function({name, email, password}){
     try{
-        const user = new User({name, email, password});
+        const user = new User({name, email, password: md5(password)});
         const newUser = await user.save();
         return newUser;
     }catch(e){
@@ -25,8 +26,10 @@ userService.getUsers = async function(){
 
 userService.getUser = async function({ id }){
     try{
-        const user = await User.findById(id)
-        return user;
+        const user = await User.findById(id);
+        let getUser = JSON.parse(JSON.stringify(user));
+        delete getUser.password;
+        return getUser;
     }catch (e){
         console.log(e.message);
         throw new Error('Error while returning user');
