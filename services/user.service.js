@@ -48,4 +48,12 @@ userService.updateUser = async function({id},{name, email, password}){
     }
 }
 
+userService.deleteUser = async function({id}){
+    try{
+        const user = await User.deleteOne({_id:id});
+        return user;
+    }catch(e){
+        throw new Error('Error while delete User');
+    }
+}
 module.exports = userService;
