@@ -5,6 +5,7 @@ const userRoute = require('./routes/user.rout');
 const playlistRoute = require('./routes/playlist.rout');
 const favoriteRoute = require('./routes/favorite.rout');
 const recentRoute = require('./routes/recent.rout');
+const cors = require('cors');
 const app = express();
 
 
@@ -14,8 +15,9 @@ const PORT = process.env.PORT || 3000;
 mongoose.connect(process.env.DATABASE_URL);
 const db = mongoose.connection;
 db.on('error', error=> console.log(error));
-db.once('open', ()=> console.log('connection to db established'))
+db.once('open', ()=> console.log('connection to db established'));
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({
     type:'application/x-www-form-urlencoded',
