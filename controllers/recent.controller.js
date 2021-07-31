@@ -3,7 +3,7 @@ const recentController = {};
 
 recentController.upsert = async function (req, res, next){
     try{    
-        const upsertRecent = await recentService.upsertRecent(req.body);
+        const upsertRecent = await recentService.upsertRecent(req.params, req.body);
         return res.status(201).json({status: 201, data:upsertRecent});
     }catch (error){
         return res.status(400).json({status: 400, message: error.message})

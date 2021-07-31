@@ -32,7 +32,7 @@ async function updateRecent(user, idSong){
     }
 }
 
-recentService.upsertRecent = async function({idUser, idSong}){
+recentService.upsertRecent = async function({idUser},{idSong}){
     try{
         const user = await findUser(idUser);
         if(user){
@@ -48,7 +48,7 @@ recentService.upsertRecent = async function({idUser, idSong}){
 
 recentService.getRecent = async function({id}){
     try{
-        const recents = await recent.find({_id:id});
+        const recents = await recent.find({idUser:id});
         return recents;
     }catch(e){
         throw new Error ('Error while paginating recent');
