@@ -1,11 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const userRoute = require('./routes/user.rout');
 const playlistRoute = require('./routes/playlist.rout');
 const favoriteRoute = require('./routes/favorite.rout');
 const recentRoute = require('./routes/recent.rout');
-const cors = require('cors');
 const app = express();
 
 
