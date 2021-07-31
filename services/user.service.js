@@ -58,4 +58,24 @@ userService.deleteUser = async function({id}){
         throw new Error('Error while delete User');
     }
 }
+
+userService.loggin = async function({email},{password}){
+    try{
+        const users = await User.find({email:email});
+        if(users[0].password == md5(password)){
+            return data = {
+                id:users[0]._id,
+                status: true
+            }
+        }else{
+            return data ={
+                status: false
+            }
+        };
+    }catch(e){
+        console.log(e.message);
+        throw new Error ('Error while loggin User');
+    }
+}
+
 module.exports = userService;
