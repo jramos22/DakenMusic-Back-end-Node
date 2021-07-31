@@ -32,9 +32,9 @@ async function updateRecent(user, idSong){
     }
 }
 
-recentService.upsertRecent = async function({idUser},{idSong}){
+recentService.upsertRecent = async function({id},{idSong}){
     try{
-        const user = await findUser(idUser);
+        const user = await findUser(id);
         if(user){
             return await updateRecent(user, idSong);
         }
