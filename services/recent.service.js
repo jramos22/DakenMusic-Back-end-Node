@@ -14,7 +14,8 @@ async function findUser(idUser){
 
 async function createRecent(idUser, idSong){
     try{
-        const Recent = new recent({idUser, idSong})
+        console.log(idUser, idSong)
+        const Recent = new recent({idUser: mongoose.Types.ObjectId(idUser), idSong})
         const newRecent = await Recent.save();
         return newRecent;
     }catch(e){
@@ -34,12 +35,12 @@ async function updateRecent(user, idSong){
 
 recentService.upsertRecent = async function({id},{idSong}){
     try{
+        
         const user = await findUser(id);
         if(user){
             return await updateRecent(user, idSong);
         }
-
-        return await createRecent(idUser, idSong);
+        return await createRecent(id, idSong);
     }catch(e){
         throw new Error('Error while upsert Recent');
     }
