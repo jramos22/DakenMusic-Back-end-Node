@@ -55,9 +55,9 @@ favoriteService.upsertFavorite = async function({idUser, songs}){
     }
 }
 
-favoriteService.getFavorite = async function(){
+favoriteService.getFavorite = async function({id}){
     try{
-        const favorites = await favorite.find({});
+        const favorites = await favorite.findById({_id:id});
         return favorites;
     }catch(e){
         throw new Error ('Error while paginating Favorite');

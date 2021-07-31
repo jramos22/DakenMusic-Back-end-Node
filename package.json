@@ -17,6 +17,6 @@
     "express-validator": "^6.12.0",
     "md5": "^2.3.0",
     "mongoose": "^5.13.2",
-    "nodemon": "^2.0.9"
+    "nodemon": "^2.0.12"
   }
 }

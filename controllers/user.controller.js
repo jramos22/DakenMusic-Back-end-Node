@@ -43,7 +43,7 @@ userController.updateUser = async function (req, res, next){
 userController.deleteUser = async function (req, res, next){
     try{
         const deleteUser = await userService.deleteUser(req.params);
-        return res.status(200).json({deleteUser});
+        return res.status(201).json({deleteUser});
     }catch(error){
         return res.status(400).json({status: 400, message: error.message})
     }

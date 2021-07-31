@@ -36,9 +36,12 @@ playlistService.deleteSongs = async function({id},{idUser, playlistName, idSongs
     try{
         const Playlist = await playlist.findById(id);
         const updatePlay = await Playlist.set({idUser, playlistName});
-        Playlist.idSongsAdded.pull(idSongsAdded.toString());
+        Playlist.idSongsAdded.pull(idSongsAdded.toString());      
         await updatePlay.save();
-        return updatePlay;
+        /*return updatePlay;*/        
+        if(Playlist){
+            return "Song deleted sucessfully"
+        }
     }catch(e){
         throw new Error('Error while delete favorite');
     }
@@ -46,20 +49,24 @@ playlistService.deleteSongs = async function({id},{idUser, playlistName, idSongs
 playlistService.deletePlaylist = async function({id}){
     try{
         const Playlist = await playlist.deleteOne({_id:id});
+        if(Playlist){
+            return "Playlist deleted successfully"
+        }
         return Playlist;
     }catch(e){
         throw new Error('Error while delete Playlist');
     }
 }
 
-playlistService.getPlaylist = async function(){
+/* playlistService.getPlaylist = async function(){
     try{
         const playlists = await playlist.find({});
         return playlists;
     }catch(e){
         throw new Error ('Error while paginating Playlists');
     }
-}
+} */
+
 playlistService.getPlaylistOne = async function({id}){
     try{
         const Playlist = await playlist.find({_id:id});
