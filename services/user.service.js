@@ -46,10 +46,10 @@ userService.getUser = async function({ id }){
     }
 }
 
-userService.updateUser = async function({id},{name, email, password}){
+userService.updateUser = async function({id},{name, email}){
     try{
         const user = await User.findById(id);
-        const updateUser = await user.set({name, email, password: md5(password)});
+        const updateUser = await user.set({name, email});
         await updateUser.save();
         return updateUser;
     }catch(e){
