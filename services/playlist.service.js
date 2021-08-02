@@ -1,15 +1,18 @@
 const playlist = require('../models/playlist.model');
-const playlistService = {}
 const mongoose = require('mongoose');
 
-/*async function findUser(idUser){
-    try{
-        const user = playlist.findOne({idUser: mongoose.Types.ObjectId(idUser)});
-        return user ? user : null;
-    }catch (e){
-        throw new Error('Error while find favorite')
-    }
-}*/
+/* Las funciones asíncronas le permiten escribir código basado en Promise como si fuera sincrónico, Cuando la función asíncrona devuelve un valor, la promesa se cumple, si la función asíncrona arroja un error, se rechaza. */
+
+/* .find() : Es utilizado para encontrar datos particulares de la base de datos */
+/* .save() : Es utilizado para guardar el documento en la base de datos */
+/* .findById() : Es utilizado para buscar un solo documento por su campo _id */
+/* .deleteOne() : Es utilizado para eliminar el primer documento que cumple las condiciones de la colección */
+/* .set() : Es utilizado para asignar el nombre de la configuración al valor*/
+/* .push() : Es utilizado para agregar valores al final del array */
+/* .pull() : Es utilizado para eliminar un elemento de la colección mediante la clave dada y devolver el elemento extraído */
+
+const playlistService = {}
+
 
 playlistService.createPlaylist = async function ({idUser, playlistName ,idSongsAdded}){
     try{

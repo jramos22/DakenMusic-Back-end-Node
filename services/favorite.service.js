@@ -1,6 +1,12 @@
 const favorite = require('../models/favorite.model');
 const mongoose = require('mongoose');
 
+/* Las funciones asíncronas le permiten escribir código basado en Promise como si fuera sincrónico, Cuando la función asíncrona devuelve un valor, la promesa se cumple, si la función asíncrona arroja un error, se rechaza. */
+
+/* .find() : Es utilizado para encontrar datos particulares de la base de datos */
+/* .save() : Es utilizado para guardar el documento en la base de datos */
+/* .pull() : Es utilizado para eliminar un elemento de la colección mediante la clave dada y devolver el elemento extraído */
+
 const favoriteService = {}
 
 async function findUser(idUser){

@@ -1,6 +1,16 @@
 const md5 = require('md5');
 const User = require('../models/user.model');
 
+/* Las funciones asíncronas le permiten escribir código basado en Promise como si fuera sincrónico, Cuando la función asíncrona devuelve un valor, la promesa se cumple, si la función asíncrona arroja un error, se rechaza. */
+
+/* md5 : Es un módulo en node.js, que utiliza un algoritmo de resumen de mensajes y es una función hash ampliamente utilizada que produce un valor hash de 128 bits, por lo que la contraseña se almacena en forma hash en la base de datos, lo que hace que el sistema sea más seguro. La contraseña real no debe almacenarse ya que es una mala práctica */
+
+/* .find() : Es utilizado para encontrar datos particulares de la base de datos */
+/* .save() : Es utilizado para guardar el documento en la base de datos */
+/* .findById() : Es utilizado para buscar un solo documento por su campo _id */
+/* .set() : Es utilizado para asignar el nombre de la configuración al valor*/
+/* .deleteOne() : Es utilizado para eliminar el primer documento que cumple las condiciones de la colección */
+
 const userService = {}
 
 userService.createUser = async function({name, email, password}){
