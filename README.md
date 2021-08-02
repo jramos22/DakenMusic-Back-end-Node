@@ -1,8 +1,8 @@
 Proyecto back-end de daken Music
 
 Integrantes del proyecto: 
-    - Jose Daniel Ramos
-    - Kendoll Castro Matarrita
+- Jose Daniel Ramos
+- Kendoll Castro Matarrita
 
 Este un proyecto del Centro de Tecnología y Artes Visuales (CETAV), para concluir con los cursos de Lenguaje de Servidor y Javascript 4.
 
